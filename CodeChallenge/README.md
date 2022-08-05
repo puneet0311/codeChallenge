@@ -1,18 +1,24 @@
-## Getting Started
+Input: 
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+a.tryDirectDependency("A B C");
+a.tryDirectDependency("B C E");
+a.tryDirectDependency("C G");
+a.tryDirectDependency("D A F");
+a.tryDirectDependency("E F");
+a.tryDirectDependency("F H");
 
-## Folder Structure
+        // CyclicDependencyException example
+        aa.tryDirectDependency("A B");
+        aa.tryDirectDependency("B A");
 
-The workspace contains two folders by default, where:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Output:
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+A depends transitively on B,C,E,F,G,H
+B depends transitively on C,E,F,G,H
+C depends transitively on G
+D depends transitively on A,B,C,E,F,G,H
+E depends transitively on F,H
+F depends transitively on H
+G depends transitively on 
+H depends transitively on 
